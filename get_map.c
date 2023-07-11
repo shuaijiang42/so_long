@@ -6,21 +6,20 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/07 18:51:14 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:16:27 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	initiate_struct_game(t_game *game)
+t_game *initiate_struct_game(void)
 {
-	game->map = NULL;
-	game->flood_map = NULL;
-	game->length = 0;
-	game->width = 0;
-	game->count_p = 0;
-    game->count_c = 0; 
-    game->count_e = 0; 
+	t_game *game = NULL;
+	
+	game = ft_calloc(1, sizeof(*game));
+	if (!game)
+		return (NULL);	
+	return (game); 
 }
 
 void	check_file_type(char *path)
@@ -36,37 +35,44 @@ void	check_file_type(char *path)
 
 char	*get_lines(int fd, t_game *game)
 {
-	char	*file;
+	char	*whole_line;
 	char	*line;
 	char	*aux;
 	int 	i; 
 
 	i = 0;
-	line = get_next_line(fd);
+	line = get_next_line(fd);	
 	if(line)
-		game->width = ft_strlen(line)-1;
+		game->width = ft_strlen(line) - 1;
 	aux = NULL;
-	file = (char *)calloc(1, sizeof(char));
-	if (!file)
+	whole_line = (char *)calloc(1, 1);
+	if (!whole_line)
 		perror_message_exit("calloc");
 	while (line)
 	{	
 		i++;
-		aux = file;
-		file = ft_strjoin(aux, line);
+		aux = whole_line;
+		whole_line = ft_strjoin(aux, line);
 		(free(aux), free(line));
 		line = get_next_line(fd);
 	}
-	return (file);
+	return (whole_line);
 }
 
 t_game	*read_map(int fd, t_game *game)
 {
 	int i;
-
+	char *temp1;
+	char *temp2;
+	char *temp3;
+	
 	i = 0;
-	game->map = ft_split(get_lines(fd, game), '\n');
-	game->flood_map = ft_split(get_lines(fd, game), '\n');
+	temp1 = get_lines(fd, game);
+	temp2 = ft_strdup(temp1);
+	temp3 = ft_strdup(temp1);
+	game->map = ft_split(temp1, '\n');
+	game->f_map = ft_split(temp2, '\n');
+	game->f_col_map = ft_split(temp3, '\n');
 	while (game->map[i])
 	{
 		if (game->map && (int)ft_strlen(game->map[i])!= game->width)

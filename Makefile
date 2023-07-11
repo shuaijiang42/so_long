@@ -1,6 +1,6 @@
 NAME = so_long
 
-SOURCES = main.c check_map.c error_handling.c get_map.c
+SOURCES = main.c check_map.c error_handling.c get_map.c print_map.c
 # BONUS_SOURCES = 
 		
 OBJECTS = $(SOURCES:.c=.o)

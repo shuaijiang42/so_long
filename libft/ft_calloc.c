@@ -6,13 +6,13 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 13:58:42 by shujiang          #+#    #+#             */
-/*   Updated: 2023/06/23 13:35:13 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:13:17 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <limits.h>
-/* 
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr;
@@ -24,7 +24,7 @@ void	*ft_calloc(size_t count, size_t size)
 		return (0);
 	ft_bzero (ptr, size * count);
 	return (ptr);
-} */
+}
 
 //first, make sure the passing parameter is legal
 //size_t has a maximum size, it is defined in limits.h.
