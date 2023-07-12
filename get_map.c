@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/11 22:16:27 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:40:05 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ void	check_file_type(char *path)
 	if (!extension || ft_strlen(extension) != 4 || ft_strncmp(extension, ".ber", 4) != 0)
 		error_message_exit("Invalid file type", 0);
 }
+
+void	get_map_length(int fd, t_game *game)
+{
+	char *line;
+	
+	line = get_next_line(fd);
+	while (line)
+	{
+		game->length += 1;
+		line = get_next_line(fd);
+	}
+	printf("length; %d\n", game->length);
+}	
 
 char	*get_lines(int fd, t_game *game)
 {
@@ -76,9 +89,10 @@ t_game	*read_map(int fd, t_game *game)
 	while (game->map[i])
 	{
 		if (game->map && (int)ft_strlen(game->map[i])!= game->width)
-			error_message_exit("The map is not rectangular.", 1);
+			error_message_exit("The map is not rectangular.", 1); 
 		i++;
 	}
-	game->length = i;
+	if (game->length != i)
+		error_message_exit("The map is not valid.", 1);
 	return (game);
 }

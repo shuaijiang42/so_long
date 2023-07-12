@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/11 21:10:01 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/12 14:00:32 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ typedef struct s_game
     int  p_y;
 } t_game;
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 void    error_message_exit(char *message, enum e_errors errnum);
 void    check_wall(t_game *game);
 void    perror_message_exit(char *message);
@@ -71,5 +79,6 @@ void print_map(char **map);
 //void	flood_collectable(t_game *game, int *flag);
 void	flood_fill_collectable(char **map, int x, int y, int *count);
 void	check_map(t_game *game);
+void	get_map_length(int fd, t_game *game);
 
 #endif

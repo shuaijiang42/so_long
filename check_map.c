@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:52:45 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/11 22:28:08 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/12 13:32:07 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void    check_wall(t_game *game)
 		else 
 			break ;
 	}
-	if (i != game->length -1)
+	if (i != game->length)
 	{
 		error_message_exit("The wall is not closed.", 2); 
 	}
@@ -143,6 +143,7 @@ void	check_map(t_game *game)
 	 
 	flag = 0;
 	count = 0;
+	print_map(game->map);
 	check_wall(game);
 	check_char(game);
 	get_position(game);
@@ -153,5 +154,6 @@ void	check_map(t_game *game)
 	flood_fill_collectable(game->f_col_map, game->p_x, game->p_y, &count);
 	if (count != 0)
 		error_message_exit("Invalid path for collecting all the collectables", 5);
+
 }
 
