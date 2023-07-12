@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 14:00:32 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:12:50 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ enum e_errors{
     INVALID_PATH_COLLECTABLE
 };
 
-
 typedef struct s_game
 {
     char **map;
@@ -55,15 +54,9 @@ typedef struct s_game
     int  count_e;
     int  p_x;
     int  p_y;
+    void *mlx;
+    void *mlx_win;
 } t_game;
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 
 void    error_message_exit(char *message, enum e_errors errnum);
 void    check_wall(t_game *game);
@@ -76,9 +69,8 @@ void    check_char(t_game *game);
 void	get_position(t_game *game);
 void	flood_fill(char **map, int x, int y, int *flag);
 void print_map(char **map);
-//void	flood_collectable(t_game *game, int *flag);
 void	flood_fill_collectable(char **map, int x, int y, int *count);
-void	check_map(t_game *game);
+void	check_map(t_game *game, char *path);
 void	get_map_length(int fd, t_game *game);
-
+void	paint_sprite(t_game *game, int x, int y, char *sprite);
 #endif

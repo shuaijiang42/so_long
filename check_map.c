@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:52:45 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 13:32:07 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/12 23:16:03 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,24 +136,30 @@ void	flood_fill_collectable(char **map, int x, int y, int *count)
 		flood_fill_collectable(map, x - 1, y, count);
 }
 
-void	check_map(t_game *game)
+void	check_map(t_game *game, char *path)
 {
-	int flag;
 	int count;
-	 
-	flag = 0;
+	int fd;
+
 	count = 0;
-	print_map(game->map);
+	check_file_type(path);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		perror_message_exit("The file can not be opened.");
+	get_map_length(fd, game);
+	fd = open(path, O_RDONLY);
+	if (fd == -1)
+		perror_message_exit("The file can not be opened.");
+	game = read_map(fd, game);
 	check_wall(game);
 	check_char(game);
 	get_position(game);
-	flood_fill(game->f_map, game->p_x, game->p_y, &flag);
-	if (flag == 0)
+	flood_fill(game->f_map, game->p_x, game->p_y, &count);
+	if (count == 0)
 		error_message_exit("Invalid path", 4);
 	count = game->count_c;
 	flood_fill_collectable(game->f_col_map, game->p_x, game->p_y, &count);
 	if (count != 0)
 		error_message_exit("Invalid path for collecting all the collectables", 5);
-
 }
 
