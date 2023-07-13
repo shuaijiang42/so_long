@@ -6,13 +6,13 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:52:45 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/13 11:05:30 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:22:39 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void    check_front_end(char *line)
+int   check_front_end(char *line)
 {
 	size_t i;
 
@@ -25,11 +25,14 @@ static void    check_front_end(char *line)
 			break ;
 	}
 	if (i < ft_strlen(line))
-		error_message_exit("The wall is not closed.", 2);   
-	
+		return (0);
+	return (1);
+	/* {
+		error_message_exit("The wall is not closed.", 2);
+	}    */
 }
 
-void    check_wall(t_game *game)
+static void    check_wall(t_game *game)
 {
 	int i;
 
@@ -38,7 +41,11 @@ void    check_wall(t_game *game)
 	{
 		if (i == 0 || i == game->length - 1)
 		{
-			check_front_end((game->map)[i]);
+			if ((check_front_end((game->map)[i]) == 0))
+			{
+				free_game(game);
+				error_message_exit("The wall is not closed.", 2);
+			}
 			i++;
 		}
 		else if ((game->map)[i][0] == '1'  && 
@@ -49,11 +56,12 @@ void    check_wall(t_game *game)
 	}
 	if (i != game->length)
 	{
+		free_game(game);
 		error_message_exit("The wall is not closed.", 2); 
 	}
 }
 
-void    check_char(t_game *game)
+static void    check_char(t_game *game)
 {
 	int i;
 	int j;
@@ -76,10 +84,13 @@ void    check_char(t_game *game)
 		j = 0;
 	}
 	if (game->count_p != 1 || game->count_c < 1 || game->count_e != 1)
+	{
+		free_game(game);
 		error_message_exit("Invalid number of element", 3);
+	}	
 }
 
-void	get_position(t_game *game)
+static void	get_position(t_game *game)
 {
 	int y;
 	int x;
@@ -99,41 +110,6 @@ void	get_position(t_game *game)
 		}	
 		y++;
 	}
-}
-
-void	flood_fill(char **map, int x, int y, int *flag)
-{
-	if (map[y][x] == 'E')
-	{
-		*flag = 1;
-		return ;
-	}
-	map[y][x] = '1';
-	if (map[y + 1][x] != '1')
-		flood_fill(map, x, y + 1, flag);	
-	if (map[y][x + 1] != '1')
-		flood_fill(map, x + 1, y, flag);	
-	if (map[y - 1][x] != '1')
-		flood_fill(map, x, y - 1, flag);		
-	if (map[y][x - 1] != '1')
-		flood_fill(map, x - 1, y, flag);
-}
-
-void	flood_fill_collectable(char **map, int x, int y, int *count)
-{
-	if (*count <= 0)
-		return ;
-	if (map[y][x] == 'C')
-		*count -= 1;
-	map[y][x] = '1';
-	if (map[y + 1][x] != '1' && map[y + 1][x] != 'E')
-		flood_fill_collectable(map, x, y + 1, count);	
-	if (map[y][x + 1] != '1' && map[y][x + 1] != 'E')
-		flood_fill_collectable(map, x + 1, y, count);	
-	if (map[y - 1][x] != '1' && map[y - 1][x] != 'E')
-		flood_fill_collectable(map, x, y - 1, count);		
-	if (map[y][x - 1] != '1' && map[y][x - 1] != 'E')
-		flood_fill_collectable(map, x - 1, y, count);
 }
 
 void	check_map(t_game *game, char *path)
@@ -156,9 +132,15 @@ void	check_map(t_game *game, char *path)
 	get_position(game);
 	flood_fill(game->f_map, game->p_x, game->p_y, &count);
 	if (count == 0)
+	{
+		free_game(game);
 		error_message_exit("Invalid path", 4);
+	}
 	count = game->count_c;
 	flood_fill_collectable(game->f_col_map, game->p_x, game->p_y, &count);
 	if (count != 0)
+	{
+		free_game(game);
 		error_message_exit("Invalid path for collecting all the collectables", 5);
+	}
 }

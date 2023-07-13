@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 23:13:41 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/13 19:18:58 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	get_map_length(int fd, t_game *game)
 	while (line)
 	{
 		game->length += 1;
+		free(line);
 		line = get_next_line(fd);
 	}
 }	
@@ -85,13 +86,20 @@ t_game	*read_map(int fd, t_game *game)
 	game->map = ft_split(temp1, '\n');
 	game->f_map = ft_split(temp2, '\n');
 	game->f_col_map = ft_split(temp3, '\n');
+	(free(temp1), free(temp2), free(temp3));
 	while (game->map[i])
 	{
 		if (game->map && (int)ft_strlen(game->map[i])!= game->width)
+		{
+			free_game(game);
 			error_message_exit("The map is not rectangular.", 1);
+		}	
 		i++;
 	}
 	if (game->length != i)
+	{
+		free_game(game);
 		error_message_exit("The map is not valid.", 1);
+	}
 	return (game);
 }

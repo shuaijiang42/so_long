@@ -1,6 +1,7 @@
 NAME = so_long
 
-SOURCES = main.c check_map.c error_handling.c get_map.c print_map.c movements.c
+SOURCES = main.c check_map.c error_handling.c get_map.c \
+		movements.c flood_fill.c free.c
 # BONUS_SOURCES = 
 		
 OBJECTS = $(SOURCES:.c=.o)
@@ -9,7 +10,7 @@ OBJECTS = $(SOURCES:.c=.o)
 LIB = libft/libft.a
 
 CC = gcc
-CFLAGS += -Wextra -Werror -Wall  -I ./libft -g3 -fsanitize=address
+CFLAGS += -Wextra -Werror -Wall  -I ./libft #-g3 -fsanitize=address
 MLXFLGS = -Imlx -lmlx -framework OpenGL -framework AppKit
  
 all: $(NAME) 
