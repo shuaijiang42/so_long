@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 23:12:17 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/13 17:15:46 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,34 @@
 
 void	paint_map(t_game *game)
 {
-	int i; 
-	int j;
+	int y; 
+	int x;
 
-	i = 0;
-	while(i < (game->length))
+	y = 0;
+	while(y < (game->length))
 	{
-		j = 0;
-		while(j < game->width)
+		x = 0;
+		while(x < game->width)
 		{
- 			if(game->map[i][j] == '0')
-				paint_sprite(game, j, i, "floor.xpm");
-			if(game->map[i][j] == '1')
-				paint_sprite(game, j, i, "wall.xpm");
-			if(game->map[i][j] == 'E')
-				paint_sprite(game, j, i, "door.xpm");
-			if(game->map[i][j] == 'C')
-				paint_sprite(game, j, i, "baozi.xpm");
-			if(game->map[i][j] == 'P')
-				paint_sprite(game, j, i, "baoziman.xpm");	
-			j++;
+ 			if(game->map[y][x] == '0')
+				paint_sprite(game, x, y, "floor.xpm");
+			if(game->map[y][x] == '1')
+				paint_sprite(game, x, y, "wall.xpm");
+			if(game->map[y][x] == 'E')
+				paint_sprite(game, x, y, "door.xpm");
+			if(game->map[y][x] == 'C')
+			{
+				paint_sprite(game, x, y, "floor.xpm");
+				paint_sprite(game, x, y, "baozi.xpm");
+			}
+			if(game->map[y][x] == 'P')
+			{
+				paint_sprite(game, x, y, "floor.xpm");
+				paint_sprite(game, x, y, "baoziman.xpm");	
+			}	
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -51,6 +57,8 @@ void	paint_sprite(t_game *game, int x, int y, char *sprite)
 	mlx_put_image_to_window(game->mlx, game->mlx_win, img, x * 64, y * 64);
 }
 
+
+
 int	main(int argc, char **argv)
 {
 	//int fd;
@@ -59,22 +67,15 @@ int	main(int argc, char **argv)
 	game = initiate_struct_game();
 	if (argc == 2)
 	{
-		/* check_file_type(argv[1]);
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
-			perror_message_exit("The file can not be opened.");
-		get_map_length(fd, game);
-		fd = open(argv[1], O_RDONLY);
-		if (fd == -1)
-			perror_message_exit("The file can not be opened.");
-		game = read_map(fd, game); */
 		check_map(game, argv[1]);
 		game->mlx = mlx_init();
 		game->mlx_win = mlx_new_window(game->mlx, game->width * 64, game->length * 64, "Town of Baozi");
 		paint_map(game);
+		mlx_key_hook(game->mlx_win, events, game);
 		mlx_loop(game->mlx);
 		free(game);
 	}
 
 	return (0);
 }
+

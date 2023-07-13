@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:52:45 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 23:16:03 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/13 11:05:30 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,4 +162,3 @@ void	check_map(t_game *game, char *path)
 	if (count != 0)
 		error_message_exit("Invalid path for collecting all the collectables", 5);
 }
-

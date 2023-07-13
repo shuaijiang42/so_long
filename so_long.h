@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/12 23:12:50 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/13 16:43:14 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,41 @@
 /* Enums */
 enum e_keys
 {
-    W = 13,
-    A = 0,
-    S = 1,
-    D = 2,
-    UP = 126,
-    LEFT = 123,
-    DOWN = 125,
-    RIGHT = 124,
-    ESC = 53
+	W = 13,
+	A = 0,
+	S = 1,
+	D = 2,
+	UP = 126,
+	LEFT = 123,
+	DOWN = 125,
+	RIGHT = 124,
+	ESC = 53
 };
 
 enum e_errors{
-    WRONG_EXTENSION,
-    NOT_RECTANGULAR,
-    OPEN_WALL,
-    NOT_ENOUGH_ELEMENT,
-    INVALID_PATH,
-    INVALID_PATH_COLLECTABLE
+	WRONG_EXTENSION,
+	NOT_RECTANGULAR,
+	OPEN_WALL,
+	NOT_ENOUGH_ELEMENT,
+	INVALID_PATH,
+	INVALID_PATH_COLLECTABLE
 };
 
 typedef struct s_game
 {
-    char **map;
-    char **f_map;
-    char **f_col_map;
-    int  width;
-    int	 length;
-    int	 count_p;
-    int  count_c;
-    int  count_e;
-    int  p_x;
-    int  p_y;
-    void *mlx;
-    void *mlx_win;
+	char **map;
+	char **f_map;
+	char **f_col_map;
+	int  width;
+	int	 length;
+	int	 count_p;
+	int  count_c;
+	int  count_e;
+	int  p_x;
+	int  p_y;
+	void *mlx;
+	void *mlx_win;
+	void *img;
 } t_game;
 
 void    error_message_exit(char *message, enum e_errors errnum);
@@ -73,4 +74,8 @@ void	flood_fill_collectable(char **map, int x, int y, int *count);
 void	check_map(t_game *game, char *path);
 void	get_map_length(int fd, t_game *game);
 void	paint_sprite(t_game *game, int x, int y, char *sprite);
+int     move(int keycode, t_game *game);
+void	paint_map(t_game *game);
+int    events(int keycode, t_game *game);
+
 #endif
