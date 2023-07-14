@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:34:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/07 17:12:04 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 13:56:13 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,3 @@ char	*ft_strchr(const char *s, int c)
 	*str = '\0';
 	return (ret);
 } */
-
