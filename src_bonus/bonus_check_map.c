@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:52:45 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 14:28:35 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:22:55 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static void	check_char(t_game *game)
 	int	j;
 
 	i = 1;
-	j = 0;
 	while (game->map[i] && i < game->length - 1)
 	{
+		j = 0;
 		while (j < game->width)
 		{
 			if (game->map[i][j] == 'P')
@@ -69,15 +69,15 @@ static void	check_char(t_game *game)
 				game->count_c++;
 			else if (game->map[i][j] == 'E')
 				game->count_e++;
-			else if (game->map[i][j] != '1' && game->map[i][j] != '0'
-				&& game->map[i][j] != 'M' && game->map[i][j] != 'D')
+			else if (game->map[i][j] == 'M' || game->map[i][j] == 'D')
+				game->monster++;
+			else if (game->map[i][j] != '1' && game->map[i][j] != '0')
 				error_message_exit("The map has invalid element", game);
 			j++;
 		}
 		i++;
-		j = 0;
 	}
-	if (game->count_p != 1 || game->count_c < 1 || game->count_e != 1)
+	if (game->count_p != 1 || game->count_c < 1 || game->count_e != 1 || game->monster < 1)
 		error_message_exit("Invalid number of element", game);
 }
 

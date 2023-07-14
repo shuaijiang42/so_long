@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
+/*   bonus_get_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 13:45:58 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:14:33 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*get_lines(int fd, t_game *game)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		ft_printf("Error\nThe map has no content.");
+		ft_printf("Error\nThe map has no content.\n");
 		exit(1);
 	}		
 	game->width = ft_strlen(line) - 1;

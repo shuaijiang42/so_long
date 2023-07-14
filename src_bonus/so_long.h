@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 14:41:38 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 15:08:00 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_game
 	void	*mlx_win;
 	void	*img;
 	int		steps;
+	int		monster;
 }	t_game;
 
 void	error_message_exit(char *message, t_game *game);
