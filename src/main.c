@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 13:51:04 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:50:00 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	main(int argc, char **argv)
 		game->mlx_win = mlx_new_window(game->mlx, game->width * 64,
 				game->length * 64, "Town of Baozi");
 		paint_map(game);
-		mlx_string_put(game->mlx, game->mlx_win, (game->width - 2) * 64,
-			25, 0x0000FF00, "Steps");
 		mlx_key_hook(game->mlx_win, events, game);
 		mlx_hook(game->mlx_win, 17, 0L, ft_close, game);
 		mlx_loop(game->mlx);

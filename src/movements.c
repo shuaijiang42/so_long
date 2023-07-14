@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:05:58 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 13:52:51 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:50:34 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	move_player(t_game *game, int m_x, int m_y)
 		game->steps++;
 		game->p_y += m_y;
 		game->p_x += m_x;
-		ft_printf("Steps: %d\n", game->steps);
 		if (game->map[game->p_y][game->p_x] != 'E')
 			paint_sprite(game, game->p_x, game->p_y, "baoziman.xpm");
 	}
@@ -59,8 +58,7 @@ int	events(int keycode, t_game *game)
 	if (keycode == D || keycode == RIGHT)
 		move_player(game, 1, 0);
 	steps = ft_itoa(game->steps);
-	mlx_string_put(game->mlx, game->mlx_win, (game->width - 1) * 64,
-		25, 0x0000FF00, steps);
+	ft_printf("Steps: %d\n", game->steps);
 	free(steps);
 	return (0);
 }
