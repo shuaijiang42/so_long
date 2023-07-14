@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:05:58 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 17:59:50 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:04:45 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,24 @@ int	events(int keycode, t_game *game)
 		exit(0);
 	}
 	if (keycode == W || keycode == UP)
+	{
+		game->dir = BACK;
 		move_player(game, 0, -1);
+	}	
 	if (keycode == S || keycode == DOWN)
+	{
+		game->dir = FRONT;
 		move_player(game, 0, 1);
+	}
 	if (keycode == A || keycode == LEFT)
+	{
+		game->dir = LEFT_SIDE;
 		move_player(game, -1, 0);
+	}	
 	if (keycode == D || keycode == RIGHT)
+	{
+		game->dir = RIGHT_SIDE;
 		move_player(game, 1, 0);
+	}
 	return (0);
 }

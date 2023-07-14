@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 17:41:27 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:03:46 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,14 @@ enum e_keys
 	ESC = 53
 };
 
+enum e_dir
+{
+	FRONT = 1,
+	BACK,
+	LEFT_SIDE,
+	RIGHT_SIDE
+};
+
 typedef struct s_game
 {
 	char	**map;
@@ -51,6 +59,7 @@ typedef struct s_game
 	void	*img;
 	int		steps;
 	int		monster;
+	int		dir;
 }	t_game;
 
 void	error_message_exit(char *message, t_game *game);
