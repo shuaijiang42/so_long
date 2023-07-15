@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 16:26:32 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 19:57:23 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <string.h>
 # include "../libft/libft.h"
 
-#define GREEN 0xFFFFFF
+# define WHITE 0xFFFFFF
 
 enum e_keys
 {
@@ -58,9 +58,11 @@ typedef struct s_game
 	void	*mlx_win;
 	void	*img;
 	int		steps;
-	int		monster;
+	int		demon;
 	int		dir;
-	int		 counter;
+	int		counter;
+	int		d_x;
+	int		d_y;
 }	t_game;
 
 void	error_message_exit(char *message, t_game *game);
@@ -80,5 +82,10 @@ void	free_map(char **map);
 
 //bonus
 int		ft_close(t_game *game);
-void    put_player(t_game *game);
+void	put_player(t_game *game);
+int		check_front_end(char *line);
+void	check_wall(t_game *game);
+void	check_char(t_game *game);
+void	check_nbr_element(t_game *game);
+void	get_position(t_game *game);
 #endif

@@ -6,11 +6,17 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 13:41:23 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:02:16 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* void	ft_leaks(void)
+{
+	system("leaks -q so_long_bonus");
+}
+atexit(ft_leaks); */
 
 void	paint_map(t_game *game)
 {
@@ -80,6 +86,6 @@ int	main(int argc, char **argv)
 		free_map(game->map);
 		free(game);
 	}
-	ft_printf("Error\nWrong number of arguments.\n");	
+	ft_printf("Error\nWrong number of arguments.\n");
 	return (0);
 }

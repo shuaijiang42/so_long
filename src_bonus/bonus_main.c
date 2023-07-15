@@ -6,11 +6,17 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 17:21:28 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 20:01:36 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/* void	ft_leaks(void)
+{
+	system("leaks -q so_long_bonus");
+}
+atexit(ft_leaks); */
 
 void	paint_map(t_game *game)
 {
@@ -23,18 +29,17 @@ void	paint_map(t_game *game)
 		x = 0;
 		while (x < game->width)
 		{
+			paint_sprite(game, x, y, "floor.xpm");
 			if (game->map[y][x] == '1')
 				paint_sprite(game, x, y, "wall.xpm");
-			else if (game->map[y][x] == 'E')
+			if (game->map[y][x] == 'E')
 				paint_sprite(game, x, y, "door.xpm");
-			else
-			{
-				paint_sprite(game, x, y, "floor.xpm");
-				if (game->map[y][x] == 'C')
-					paint_sprite(game, x, y, "baozi.xpm");
-				else if (game->map[y][x] == 'P')
-					paint_sprite(game, x, y, "baoziman.xpm");
-			}
+			if (game->map[y][x] == 'C')
+				paint_sprite(game, x, y, "baozi.xpm");
+			if (game->map[y][x] == 'P')
+				paint_sprite(game, x, y, "front1.xpm");
+			if (game->map[y][x] == 'D')
+				paint_sprite(game, x, y, "demon1.xpm");
 			x++;
 		}
 		y++;
