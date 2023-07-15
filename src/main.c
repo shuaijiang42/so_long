@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 17:50:00 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 13:41:23 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ int	main(int argc, char **argv)
 		free_map(game->map);
 		free(game);
 	}
+	ft_printf("Error\nWrong number of arguments.\n");	
 	return (0);
 }

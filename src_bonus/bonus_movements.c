@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:05:58 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 19:04:45 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:03:29 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void put_str_to_screen(t_game *game)
 	ft_printf("Steps: %d\n", game->steps);
 	free((char *)msg);
 }
+
 static void	move_player(t_game *game, int m_x, int m_y)
 {
 	if (game->map[game->p_y + m_y][game->p_x + m_x] != '1')
@@ -33,10 +34,8 @@ static void	move_player(t_game *game, int m_x, int m_y)
 		if (game->map[game->p_y + m_y][game->p_x + m_x] == 'E'
 				&& game->count_c <= 0)
 		{
-			paint_sprite(game, game->p_x + m_x,
-				game->p_y + m_y, "baoziman.xpm");
-			free_game(game);
-			exit(0);
+			put_player(game);
+			ft_close(game);
 		}
 		if (game->map[game->p_y + m_y][game->p_x + m_x] == 'C')
 		{
@@ -44,21 +43,21 @@ static void	move_player(t_game *game, int m_x, int m_y)
 			game->count_c--;
 		}
 		game->steps++;
+		game->counter++;
+		if (game->counter == 7)
+			game->counter = 1;
 		game->p_y += m_y;
 		game->p_x += m_x;
 		put_str_to_screen(game);
 		if (game->map[game->p_y][game->p_x] != 'E')
-			paint_sprite(game, game->p_x, game->p_y, "baoziman.xpm");
+			put_player(game);
 	}
 }
 
 int	events(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-	{
-		free_game(game);
-		exit(0);
-	}
+		ft_close(game);
 	if (keycode == W || keycode == UP)
 	{
 		game->dir = BACK;

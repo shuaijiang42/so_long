@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 19:03:46 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:26:32 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_game
 	int		steps;
 	int		monster;
 	int		dir;
+	int		 counter;
 }	t_game;
 
 void	error_message_exit(char *message, t_game *game);
@@ -78,5 +79,6 @@ void	free_game(t_game *game);
 void	free_map(char **map);
 
 //bonus
-
+int		ft_close(t_game *game);
+void    put_player(t_game *game);
 #endif

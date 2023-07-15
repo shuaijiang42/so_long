@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 19:34:46 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:21:28 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,6 @@ int	ft_close(t_game *game)
 	return (0);
 }
 
-int	render_next_frame(t_game *game)
-{
-	if (game->dir == BACK)
-		paint_sprite(game, game->p_x, game->p_y, "baoziback.xpm");
-	if (game->dir == LEFT_SIDE)
-		paint_sprite(game, game->p_x, game->p_y, "leftface.xpm");
-	if (game->dir == RIGHT_SIDE)
-		paint_sprite(game, game->p_x, game->p_y, "rightface.xpm");
-		return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	t_game	*game;
@@ -87,32 +76,10 @@ int	main(int argc, char **argv)
 		paint_map(game);
 		mlx_key_hook(game->mlx_win, events, game);
 		mlx_hook(game->mlx_win, 17, 0L, ft_close, game);
-		mlx_loop_hook(game->mlx, render_next_frame, game);
 		mlx_loop(game->mlx);
 		free_map(game->map);
 		free(game);
 	}
+	ft_printf("Error\nWrong number of arguments.\n");
 	return (0);
 }
-
-/* int	main(int argc, char **argv)
-{
-	t_game	*game;
-
-	game = NULL;
-	if (argc == 2)
-	{
-		game = initiate_struct_game();
-		check_map(game, argv[1]);
-		game->mlx = mlx_init();
-		game->mlx_win = mlx_new_window(game->mlx, game->width * 64,
-				game->length * 64, "Town of Baozi");
-		paint_map(game);
-		mlx_key_hook(game->mlx_win, events, game);
-		mlx_hook(game->mlx_win, 17, 0L, ft_close, game);
-		mlx_loop(game->mlx);
-		free_map(game->map);
-		free(game);
-	}
-	return (0);
-} */
