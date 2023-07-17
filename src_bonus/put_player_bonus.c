@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_put_player.c                                 :+:      :+:    :+:   */
+/*   put_player_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:20:59 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 19:58:58 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:06:19 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	put_player_front(t_game *game)
 {

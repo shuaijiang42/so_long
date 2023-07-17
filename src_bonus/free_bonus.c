@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 10:31:04 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 13:45:20 by shujiang         ###   ########.fr       */
+/*   Created: 2023/07/13 18:16:53 by shujiang          #+#    #+#             */
+/*   Updated: 2023/07/17 11:06:09 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-void	error_message_exit(char *message, t_game *game)
+void	free_map(char **map)
 {
-	free_game(game);
-	ft_printf("Error\n%s\n", message);
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
 }
 
-void	perror_message_exit(char *message)
+void	free_game(t_game *game)
 {
-	perror(message);
-	exit(1);
+	free_map(game->map);
+	free_map(game->f_col_map);
+	free_map(game->f_map);
+	free(game);
 }

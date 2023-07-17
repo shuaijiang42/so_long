@@ -5,9 +5,9 @@ SRC_DIR = ./src/
 SRC_B_DIR = ./src_bonus/
 SOURCES = main.c check_map.c error_handling.c get_map.c \
 		movements.c flood_fill.c free.c
-BONUS_SOURCES = bonus_main.c bonus_check_map.c bonus_error_handling.c bonus_get_map.c \
-		bonus_movements.c bonus_flood_fill.c bonus_free.c bonus_put_player.c\
-		bonus_check_map_utiles.c
+BONUS_SOURCES = main_bonus.c check_map_bonus.c error_handling_bonus.c get_map_bonus.c \
+		movements_bonus.c flood_fill_bonus.c free_bonus.c put_player_bonus.c\
+		check_map_utiles_bonus.c
 		
 OBJECTS = $(addprefix $(SRC_DIR), $(SOURCES:.c=.o))
 BONUS_OBJECTS = $(addprefix $(SRC_B_DIR), $(BONUS_SOURCES:.c=.o))
@@ -15,7 +15,7 @@ BONUS_OBJECTS = $(addprefix $(SRC_B_DIR), $(BONUS_SOURCES:.c=.o))
 LIB = libft/libft.a
 
 CC = gcc
-CFLAGS += -Wextra -Werror -Wall  -I ./libft
+CFLAGS += -Wextra -Werror -Wall  -I ./libft #-g3 -fsanitize=address
 MLXFLGS = -Imlx -lmlx -framework OpenGL -framework AppKit
  
 all: $(NAME) 

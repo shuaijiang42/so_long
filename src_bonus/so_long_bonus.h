@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 19:18:10 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 19:57:23 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:04:08 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdio.h>
@@ -79,8 +79,6 @@ void	paint_map(t_game *game);
 int		events(int keycode, t_game *game);
 void	free_game(t_game *game);
 void	free_map(char **map);
-
-//bonus
 int		ft_close(t_game *game);
 void	put_player(t_game *game);
 int		check_front_end(char *line);

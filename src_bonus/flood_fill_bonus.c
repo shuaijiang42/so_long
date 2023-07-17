@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_flood_fill.c                                 :+:      :+:    :+:   */
+/*   flood_fill_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:24:27 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 19:00:22 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:06:07 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	flood_fill(char **map, int x, int y, int *flag)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_check_map_utiles.c                           :+:      :+:    :+:   */
+/*   check_map_utiles_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:51:16 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 19:55:46 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:06:00 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	check_front_end(char *line)
 {

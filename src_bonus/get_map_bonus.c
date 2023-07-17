@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_get_map.c                                    :+:      :+:    :+:   */
+/*   get_map_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 15:14:33 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:24:54 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 t_game	*initiate_struct_game(void)
 {
@@ -26,9 +26,13 @@ t_game	*initiate_struct_game(void)
 void	check_file_type(char *path)
 {
 	char	*extension;
-	int		i;
 
-	i = 0;
+	if (ft_strcmp("maps/.ber", path) == 0
+		||ft_strcmp("./maps/.ber", path) == 0)
+	{
+		ft_printf("Error\nInvalid file type.\n");
+		exit(1);
+	}
 	extension = ft_strrchr(path, '.');
 	if (!extension || ft_strlen(extension) != 4
 		|| ft_strncmp(extension, ".ber", 4) != 0)

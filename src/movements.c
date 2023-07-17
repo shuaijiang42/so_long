@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:05:58 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 17:50:34 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 17:39:24 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	move_player(t_game *game, int m_x, int m_y)
 		if (game->map[game->p_y][game->p_x] != 'E')
 			paint_sprite(game, game->p_x, game->p_y, "floor.xpm");
 		if (game->map[game->p_y + m_y][game->p_x + m_x] == 'E'
-			&& game->count_c <= 0)
+			&& game->count_c == 0)
 		{
 			paint_sprite(game, game->p_x + m_x,
 				game->p_y + m_y, "baoziman.xpm");
@@ -36,6 +36,8 @@ static void	move_player(t_game *game, int m_x, int m_y)
 		game->p_x += m_x;
 		if (game->map[game->p_y][game->p_x] != 'E')
 			paint_sprite(game, game->p_x, game->p_y, "baoziman.xpm");
+		if (game->map[game->p_y][game->p_x] == 'C')
+			game->map[game->p_y][game->p_x] = '0';
 	}
 }
 

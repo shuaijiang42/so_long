@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bonus_movements.c                                  :+:      :+:    :+:   */
+/*   movements_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 11:05:58 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 20:01:23 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 11:48:10 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	put_str_to_screen(t_game *game)
 {
@@ -25,14 +25,14 @@ static void	put_str_to_screen(t_game *game)
 	free((char *)msg);
 }
 
-static void	move_player(t_game *game, int m_x, int m_y)
+static int	check_next_move(t_game *game, int m_x, int m_y)
 {
 	if (game->map[game->p_y + m_y][game->p_x + m_x] != '1')
 	{
 		if (game->map[game->p_y][game->p_x] != 'E')
 			paint_sprite(game, game->p_x, game->p_y, "floor.xpm");
 		if ((game->map[game->p_y + m_y][game->p_x + m_x] == 'E'
-			&& game->count_c <= 0)
+			&& game->count_c == 0)
 			|| (game->map[game->p_y + m_y][game->p_x + m_x] == 'D'))
 		{
 			put_player(game);
@@ -43,14 +43,25 @@ static void	move_player(t_game *game, int m_x, int m_y)
 			paint_sprite(game, game->p_x + m_x, game->p_y + m_y, "floor.xpm");
 			game->count_c--;
 		}
+		return (1);
+	}
+	return (0);
+}
+
+static void	move_player(t_game *game, int m_x, int m_y)
+{
+	if (check_next_move(game, m_x, m_y) == 1)
+	{
+		game->p_y += m_y;
+		game->p_x += m_x;
 		game->steps++;
 		game->counter++;
 		if (game->counter == 7)
 			game->counter = 1;
-		game->p_y += m_y;
-		game->p_x += m_x;
 		if (game->map[game->p_y][game->p_x] != 'E')
 			put_player(game);
+		if (game->map[game->p_y][game->p_x] == 'C')
+			game->map[game->p_y][game->p_x] = '0';
 	}
 }
 

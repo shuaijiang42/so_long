@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 20:13:36 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/14 13:45:58 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 12:24:45 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,18 @@ t_game	*initiate_struct_game(void)
 void	check_file_type(char *path)
 {
 	char	*extension;
-	int		i;
 
-	i = 0;
+	if (ft_strcmp("maps/.ber", path) == 0
+		||ft_strcmp("./maps/.ber", path) == 0)
+	{
+		ft_printf("Error\nInvalid file type.\n");
+		exit(1);
+	}
 	extension = ft_strrchr(path, '.');
 	if (!extension || ft_strlen(extension) != 4
 		|| ft_strncmp(extension, ".ber", 4) != 0)
 	{
-		ft_printf("Error\nInvalid file type.");
+		ft_printf("Error\nInvalid file type.\n");
 		exit(1);
 	}
 }
@@ -62,7 +66,7 @@ char	*get_lines(int fd, t_game *game)
 	line = get_next_line(fd);
 	if (!line)
 	{
-		ft_printf("Error\nThe map has no content.");
+		ft_printf("Error\nThe map has no content.\n");
 		exit(1);
 	}		
 	game->width = ft_strlen(line) - 1;
@@ -98,10 +102,10 @@ t_game	*read_map(int fd, t_game *game)
 	while (game->map[i])
 	{
 		if (game->map && (int)ft_strlen(game->map[i]) != game->width)
-			error_message_exit("The map is not rectangular.", game);
+			error_message_exit("The map is not rectangular.\n", game);
 		i++;
 	}
 	if (game->length != i)
-		error_message_exit("The map is not valid.", game);
+		error_message_exit("The map is not valid.\n", game);
 	return (game);
 }
