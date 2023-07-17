@@ -6,7 +6,7 @@
 /*   By: shujiang <shujiang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:07:38 by shujiang          #+#    #+#             */
-/*   Updated: 2023/07/15 20:02:16 by shujiang         ###   ########.fr       */
+/*   Updated: 2023/07/17 10:21:56 by shujiang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /* void	ft_leaks(void)
 {
-	system("leaks -q so_long_bonus");
+	system("leaks -q so_long");
 }
 atexit(ft_leaks); */
 
@@ -56,6 +56,8 @@ void	paint_sprite(t_game *game, int x, int y, char *sprite)
 
 	path = ft_strjoin("./textures/", sprite);
 	img = mlx_xpm_file_to_image(game->mlx, path, &img_width, &img_height);
+	if (!img)
+		error_message_exit("No xpm image", game);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, img, x * 64, y * 64);
 	free(path);
 }

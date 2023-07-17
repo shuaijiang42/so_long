@@ -15,7 +15,7 @@ BONUS_OBJECTS = $(addprefix $(SRC_B_DIR), $(BONUS_SOURCES:.c=.o))
 LIB = libft/libft.a
 
 CC = gcc
-CFLAGS += -Wextra -Werror -Wall  -I ./libft #-g3 -fsanitize=address
+CFLAGS += -Wextra -Werror -Wall  -I ./libft
 MLXFLGS = -Imlx -lmlx -framework OpenGL -framework AppKit
  
 all: $(NAME) 
@@ -37,4 +37,5 @@ fclean:
 	rm -f $(NAME) $(OBJECTS) $(NAME_BONUS) $(BONUS_OBJECTS)
 
 re: fclean all 
+re_bonus:  fclean bonus
 .SILENT:
